@@ -37,6 +37,7 @@ function budget_account(b, d, p) {
     text = "Please enter a budget, number of days, and price of the purchase!";
   }
   
+  localStorage.setItem("numberDays", Math.floor(d));
   localStorage.setItem("dailyBudget", Math.floor(b/d));
   localStorage.setItem("results", text);
 }
