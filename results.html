@@ -64,13 +64,20 @@
         location.href='index.html';
       }
       function toCal(){
+        var d = new Date();
+        var year = d.getFullYear();
+        var month = d.getMonth();
+        var date = d.getDate();
         var budget = localStorage.getItem("dailyBudget");
+        var numDays = localStorage.getItem("numberDays");
+        var start = year + '-' + month + '-' + date + 'T09:00:00-07:00';
+        var end = year + '-' + month + '-' + date + 'T17:00:00-08:00';
         var event = {
   'summary': 'Budget: $' + budget,
   'location': '',
   'description': budget,
   'start': {
-    'dateTime': '2018-01-27T17:00:00-08:00',
+    'dateTime': '2018-01-27T09:00:00-07:00',
     'timeZone': 'America/Los_Angeles'
   },
   'end': {
@@ -94,6 +101,9 @@ request.execute(function(event) {
   appendPre('Event created!');
 });
  console.log("createdEvent");
+ console.log("date:", date)
+ console.log("year:", year)
+ 
         
       }
       
