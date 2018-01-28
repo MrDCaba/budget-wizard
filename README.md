@@ -1,18 +1,5 @@
-# My cool website
+# Budget Wizard Version 2.018
 
-This file describes your project to the community. What's your cool website about? What makes it special?
+This website helps people make wise financial decisions by calculating the risk factors of their purchases. 
 
-ヽ(๏∀๏ )ﾉ
-
-## ← index.html
-
-Where you'll write the content of your website. 
-
-## ← styles.css
-
-CSS files add styling rules to your content
-
-## ← script.js
-
-If you're feeling fancy you can add interactivity to your site with Javascript
-
+ヽ(๏c๏ )ﾉ
