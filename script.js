@@ -8,6 +8,7 @@
 //        p=purchase price 
 // Output: "no" when x is between 0-50%; "maybe" when x is between 51%-74%; "Yes" when x is between 75%-100%
 
+
 function id(idstring){
   return document.getElementById(idstring);
 }
@@ -23,24 +24,21 @@ function budget_account(b, d, p) {
   var x = (p)/(b/d);
   
   if (x > 1) {
-    text = "No, with an estimated risk value of 100%"+ "<br />";
-    
+    text = "No, with an estimated risk value of " + Math.ceil(x * 100) + "%  (" + Math.ceil(x * 100) + "% of your daily budget will be used).";
   }
-  else if (0.51 <= x && x <= 1) {
-    text = "No, with an estimated risk value of "+ x * 100 + "%" + "<br />";
-    
-    }
-	else if (0.50 >= x && x >= 0.26) {
-    text = "Maybe, with an estimated risk value of "+ (x * 100) + "%" +"<br />";
+	else if (1 >= x && x >= 0.26) {
+    text = "Maybe, with an estimated risk value of "+ Math.ceil(x * 100) + "% (" + Math.ceil(x * 100) + "% of your daily budget will be used).";
 
     }
-	else {
-    text = "Yes, with an estimated risk value of " + (x * 100) + "% <br />";
+	else if (x < 0.26 && x >= 0){
+    text = "Yes, with an estimated risk value of " + Math.ceil(x * 100) + "% (" + Math.ceil(x * 100) + "% of your daily budget will be used).";
     }
+  else {
+    text = "Please enter a budget, number of days, and price of the purchase!";
+  }
   
+  localStorage.setItem("dailyBudget", Math.floor(b/d));
   localStorage.setItem("results", text);
 }
 
-  //else if (((x * 100))<1) {document.write("Yes, with an estimated risk value of 0 %" + "<br />")}
-  //else {document.write("Yes, with an estimated risk value of " + (x * 100)+ "%" + "<br />")}}
-             
+//GOOGLE CAL ATTEMPT
