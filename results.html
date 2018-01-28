@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
+  <link rel="shortcut icon" href="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-4/256/Budget-icon.png"/>
   <head>
     <title>Budget Wizard</title>
     <meta charset="utf-8">
+    
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!Attempted Google Cal>
+    <meta name="google-signin-client_id" content="1075434731580-to72sdfc9mabhim997pfjcgcnp13aqni.apps.googleusercontent.com">
     <link rel="stylesheet" href="/styles.css">
     <script src="\script.js" defer></script>
+    <script src = "auth.js" ></script>
+    <!Attempted Google cal>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script async defer src="https://apis.google.com/js/api.js"
+      onload="this.onload=function(){};handleClientLoad()"
+      onreadystatechange="if (this.readyState === 'complete') this.onload()">
+      
+    </script>
     
   </head>
   
@@ -22,17 +34,25 @@
     
 
     <div class="results" style="text-align:center" >
-      
-      <p>
-       
-      </p>
+      <!Attempted Google Cal>
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
       <p id="res"></p>
     </div>
     
     <div class="newButtons" style="text-align:center" >
-      <button type="button" class="buttons" >Add to Google Calendar</button>
+      <button type="button" class="buttons" onclick = "toCal()" >Add to Google Calendar</button>
 
-      <button type="button" class="buttons" onclick= >Return to Home!</button>
+      <button type="button" class="buttons" onclick="toHome()" >Return to Home!</button>
+    </div>
+   
+    <div class="aboutLink">
+      <p>
+        <a href="/authors.html" style="color:lightgray"> About </a>
+      </p>
+    </div>
+    
+    <div id="content">
+      
     </div>
     
     <script>
@@ -40,6 +60,42 @@
         var text = localStorage.getItem("results");
         document.getElementById("res").innerHTML = text;
      }
+      function toHome(){
+        location.href='index.html';
+      }
+      function toCal(){
+        var budget = localStorage.getItem("dailyBudget");
+        var event = {
+  'summary': 'Budget: $' + budget,
+  'location': '',
+  'description': budget,
+  'start': {
+    'dateTime': '2018-01-27T17:00:00-08:00',
+    'timeZone': 'America/Los_Angeles'
+  },
+  'end': {
+    'dateTime': '2018-01-27T17:00:00-08:00',
+    'timeZone': 'America/Los_Angeles'
+  },
+  'recurrence': [
+    'RRULE:FREQ=DAILY;COUNT=2'
+  ],
+  
+    
+  };
+
+
+var request = gapi.client.calendar.events.insert({
+  'calendarId': 'primary',
+  'resource': event
+});
+
+request.execute(function(event) {
+  appendPre('Event created!');
+});
+ console.log("createdEvent");
+        
+      }
       
     </script>  
     
