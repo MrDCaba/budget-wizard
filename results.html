@@ -66,26 +66,26 @@
       function toCal(){
         var d = new Date();
         var year = d.getFullYear();
-        var month = d.getMonth();
+        var month = d.getMonth() + 1;
         var date = d.getDate();
         var budget = localStorage.getItem("dailyBudget");
         var numDays = localStorage.getItem("numberDays");
-        var start = year + '-' + month + '-' + date + 'T09:00:00-07:00';
-        var end = year + '-' + month + '-' + date + 'T17:00:00-08:00';
+        var start = year + '-' + month + '-' + date + 'T06:00:00-07:00';
+        var end = year + '-' + month + '-' + date + 'T7:00:00-08:00';
         var event = {
   'summary': 'Budget: $' + budget,
   'location': '',
   'description': budget,
   'start': {
-    'dateTime': '2018-01-27T09:00:00-07:00',
+    'dateTime': start,
     'timeZone': 'America/Los_Angeles'
   },
   'end': {
-    'dateTime': '2018-01-27T17:00:00-08:00',
+    'dateTime': end,
     'timeZone': 'America/Los_Angeles'
   },
   'recurrence': [
-    'RRULE:FREQ=DAILY;COUNT=2'
+    'RRULE:FREQ=DAILY;COUNT=' + numDays
   ],
   
     
@@ -101,8 +101,8 @@ request.execute(function(event) {
   appendPre('Event created!');
 });
  console.log("createdEvent");
- console.log("date:", date)
- console.log("year:", year)
+ console.log("start:", start);
+ console.log("month:", month);
  
         
       }
